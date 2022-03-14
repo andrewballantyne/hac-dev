@@ -28,6 +28,13 @@ const ApplicationList = lazy(
     ),
 );
 
+const WorkspaceSettings = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "WorkspaceSettings" */ './pages/WorkspaceSettings/WorkspaceSettings'
+    ),
+);
+
 /**
  * the Switch component changes routes depending on the path.
  *
@@ -51,6 +58,7 @@ export const Routes: React.FC = () => (
       <Route path="/applications" component={ApplicationList} exact />
       <Route path="/sample-page" component={SamplePage} exact />
       <Route path="/k8s-util" component={K8sPage} exact />
+      <Route path="/settings" component={WorkspaceSettings} exact />
       {/* Finally, catch all unmatched routes */}
       <Route>
         <Redirect to="/" />
