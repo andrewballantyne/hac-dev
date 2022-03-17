@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { Button, Stack, StackItem, Title } from '@patternfly/react-core';
-import { handleAddEnvironment } from './actions';
+import { useNavigateAddEnvironment } from './actions';
 import EnvironmentCards from './EnvironmentCards';
 import useEnvironmentHelp from './useEnvironmentHelp';
 
 const EnvironmentsSection: React.FC = () => {
+  const navigateAddEnvironment = useNavigateAddEnvironment();
   const environmentHelp = useEnvironmentHelp();
 
   return (
@@ -14,8 +15,7 @@ const EnvironmentsSection: React.FC = () => {
       </StackItem>
       {environmentHelp && <StackItem>{environmentHelp}</StackItem>}
       <StackItem>
-        {/* eslint-disable-next-line no-alert */}
-        <Button variant="primary" onClick={() => handleAddEnvironment()}>
+        <Button variant="primary" onClick={() => navigateAddEnvironment()}>
           Create environment
         </Button>
       </StackItem>

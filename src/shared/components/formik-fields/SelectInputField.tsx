@@ -14,6 +14,8 @@ const SelectInputField: React.FC<SelectInputFieldProps> = ({
   hasOnCreateOption,
   helpText,
   required,
+  isDisabled,
+  variant,
 }) => {
   const [field, { touched, error }] = useField<string[]>(name);
   const { setFieldValue, setFieldTouched } = useFormikContext<FormikValues>();
@@ -61,7 +63,8 @@ const SelectInputField: React.FC<SelectInputFieldProps> = ({
       isRequired={required}
     >
       <Select
-        variant={SelectVariant.typeaheadMulti}
+        isDisabled={isDisabled}
+        variant={variant ?? SelectVariant.typeaheadMulti}
         onToggle={onToggle}
         onSelect={onSelect}
         onClear={onClearSelection}
@@ -72,7 +75,9 @@ const SelectInputField: React.FC<SelectInputFieldProps> = ({
         onCreateOption={(hasOnCreateOption && onCreateOption) || undefined}
       >
         {[...options, ...newOptions].map((op) => (
-          <SelectOption value={op.value} isDisabled={op.disabled} key={op.value} />
+          <SelectOption value={op.value} isDisabled={op.disabled} key={op.value}>
+            {op.label}
+          </SelectOption>
         ))}
       </Select>
     </FormGroup>

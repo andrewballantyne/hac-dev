@@ -35,6 +35,20 @@ const WorkspaceSettings = lazy(
     ),
 );
 
+const CreateEnvironment = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "CreateEnvironment" */ './components/Environments/form/CreateEnvironment'
+    ),
+);
+
+const EditEnvironment = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "EditEnvironment" */ './components/Environments/form/EditEnvironment'
+    ),
+);
+
 /**
  * the Switch component changes routes depending on the path.
  *
@@ -59,6 +73,8 @@ export const Routes: React.FC = () => (
       <Route path="/sample-page" component={SamplePage} exact />
       <Route path="/k8s-util" component={K8sPage} exact />
       <Route path="/settings" component={WorkspaceSettings} exact />
+      <Route path="/environment/create" component={CreateEnvironment} exact />
+      <Route path="/environment/edit/:name" component={EditEnvironment} exact />
       {/* Finally, catch all unmatched routes */}
       <Route>
         <Redirect to="/" />

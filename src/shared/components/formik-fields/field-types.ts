@@ -1,5 +1,10 @@
 import React from 'react';
-import { ValidatedOptions, TextInputTypes, gridItemSpanValueShape } from '@patternfly/react-core';
+import {
+  ValidatedOptions,
+  TextInputTypes,
+  gridItemSpanValueShape,
+  SelectVariant,
+} from '@patternfly/react-core';
 import { DropdownItemObject } from '../dropdown/BasicDropdown';
 import { RowRendererProps } from './multi-column-field/MultiColumnFieldRow';
 
@@ -143,6 +148,7 @@ export interface RadioGroupOption {
 }
 
 export interface SelectInputOption {
+  label?: string;
   value: string;
   disabled: boolean;
 }
@@ -152,6 +158,7 @@ export interface SelectInputFieldProps extends FieldProps {
   placeholderText?: React.ReactNode;
   isCreatable?: boolean;
   hasOnCreateOption?: boolean;
+  variant?: SelectVariant;
 }
 
 export interface EnvironmentFieldProps extends FieldProps {

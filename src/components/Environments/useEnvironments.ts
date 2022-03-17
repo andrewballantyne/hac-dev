@@ -1,22 +1,25 @@
 import { DeploymentStrategy, EnvironmentStatus, EnvironmentKind } from './types';
 
-const useEnvironments = (): EnvironmentKind[] => {
-  const mockEnv: EnvironmentKind = {
-    apiVersion: '',
-    kind: 'Environment',
-    metadata: {
-      name: 'POC',
-    },
-    spec: {
-      link: 'https://dev-stage-cluster.com',
-      deploymentStrategy: DeploymentStrategy.AUTOMATED,
-      count: 4,
-    },
-    status: {
-      status: EnvironmentStatus.RUNNING,
-    },
-  };
+const mockEnv: EnvironmentKind = {
+  apiVersion: '',
+  kind: 'Environment',
+  metadata: {
+    name: 'POC',
+  },
+  spec: {
+    order: 1,
+    link: 'https://dev-stage-cluster.com',
+    deploymentStrategy: DeploymentStrategy.AUTOMATED,
+    count: 4,
+    /** @type ClusterType.name */
+    cluster: 'my-rosa-cluster',
+  },
+  status: {
+    status: EnvironmentStatus.RUNNING,
+  },
+};
 
+const useEnvironments = (): EnvironmentKind[] => {
   return [mockEnv];
 };
 

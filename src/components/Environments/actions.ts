@@ -1,13 +1,22 @@
+import * as React from 'react';
+import { useHistory } from 'react-router-dom';
 import { EnvironmentKind } from './types';
 
-export const handleAddEnvironment = () => {
-  // TODO: go to the environment add page
-  // eslint-disable-next-line no-console
-  console.debug('add environment');
+export const useNavigateAddEnvironment = (): (() => void) => {
+  const history = useHistory();
+
+  return React.useCallback(() => {
+    history.push('/environment/create');
+  }, [history]);
 };
 
-export const handleEditEnvironment = (environment: EnvironmentKind) => {
-  // TODO: go to the current environment page, in edit
-  // eslint-disable-next-line no-console
-  console.debug('edit environment', environment);
+export const useNavigationEditEnvironment = (): ((environment: EnvironmentKind) => void) => {
+  const history = useHistory();
+
+  return React.useCallback(
+    (environment: EnvironmentKind) => {
+      history.push(`/environment/edit/${environment.metadata.name}`);
+    },
+    [history],
+  );
 };

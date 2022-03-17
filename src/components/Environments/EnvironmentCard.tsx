@@ -14,7 +14,7 @@ import {
   Title,
 } from '@patternfly/react-core';
 import { capitalize } from 'lodash-es';
-import { handleEditEnvironment } from './actions';
+import { useNavigationEditEnvironment } from './actions';
 import EnvironmentStatus from './EnvironmentStatus';
 import { EnvironmentKind } from './types';
 
@@ -25,6 +25,7 @@ type EnvironmentCardsProps = {
 };
 
 const EnvironmentCard: React.FC<EnvironmentCardsProps> = ({ environment }) => {
+  const navigateEditEnvironment = useNavigationEditEnvironment();
   const [actionsOpen, setActionsOpen] = React.useState(false);
 
   const {
@@ -46,7 +47,7 @@ const EnvironmentCard: React.FC<EnvironmentCardsProps> = ({ environment }) => {
             isOpen={actionsOpen}
             isPlain
             dropdownItems={[
-              <DropdownItem key="edit" onClick={() => handleEditEnvironment(environment)}>
+              <DropdownItem key="edit" onClick={() => navigateEditEnvironment(environment)}>
                 Edit Environment
               </DropdownItem>,
             ]}
